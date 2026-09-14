@@ -5,7 +5,6 @@ import os
 from base64 import b64encode
 
 # Load API environment variables
-load_dotenv()
 st.set_page_config(page_title="PartsRecognition", page_icon="📐", layout="wide")
 
 # -----------------------------------------------------------------------------
