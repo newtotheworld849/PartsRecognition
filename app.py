@@ -54,44 +54,22 @@ def fetch_drawings():
 init_db()
 
 # -----------------------------------------------------------------------------
-# AI INFERENCE LAYER (Vision API)
+# OFFLINE MOCK AI LAYER (No API Key Required!)
 # -----------------------------------------------------------------------------
 def analyze_drawing_with_ai(image_bytes, filename):
-    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-    base64_image = b64encode(image_bytes).decode("utf-8")
+    import time
+    time.sleep(1) # Simulates network processing lag
     
-    prompt = """
-    You are an expert industrial archivist and mechanical engineer. Analyze this technical drawing or image of a substation component.
-    Provide a valid JSON response containing strictly the following keys:
-    {
-      "drawing_type": "e.g., Schematic, Assembly Drawing, Isometric, Site Photograph, Component Sketch",
-      "medium": "e.g., CAD Export, Ink Blueprint, Digital Photograph, Pencil Draft",
-      "style_era": "e.g., High-Voltage System, Legacy Grid, Automation Module, Modern Compact",
-      "detected_elements": ["List", "of", "parts/systems", "like", "Transformer", "Circuit Breaker", "Busbar", "Isolator", "Insulator"],
-      "architectural_description": "A precise 2-sentence technical description of the component's function and physical layout."
+    # Fake AI responses to populate your database seamlessly without external calls
+    mock_analysis = {
+      "drawing_type": "Assembly Drawing",
+      "medium": "Digital CAD Export",
+      "style_era": "Modern Compact Grid System",
+      "detected_elements": ["Transformer", "Circuit Breaker", "Busbar", "Isolator", "Insulator"],
+      "architectural_description": f"A comprehensive cloud-processed architectural layout asset logging structural components for {filename}."
     }
-    Do not output markdown block wrappers (like ```json). Return raw string JSON only.
-    """
-    
-    try:
-        response = client.chat.completions.create(
-            model="gpt-4o",
-            response_format={"type": "json_object"},
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": prompt},
-                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
-                    ],
-                }
-            ],
-            max_tokens=500,
-        )
-        return json.loads(response.choices.message.content)
-    except Exception as e:
-        st.error(f"AI Processing Failed: {e}")
-        return None
+    return mock_analysis
+
 
 # -----------------------------------------------------------------------------
 # APP UI / FRONTEND
