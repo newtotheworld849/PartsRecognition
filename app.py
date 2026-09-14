@@ -3,8 +3,6 @@ import sqlite3
 import json
 import os
 from base64 import b64encode
-from openai import OpenAI
-from dotenv import load_dotenv
 
 # Load API environment variables
 load_dotenv()
