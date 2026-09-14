@@ -10,7 +10,7 @@ Depending on your integration constraints, you can evaluate this workspace via t
 
 ### Option A: The Cloud-Hosted Web Application (Recommended)
 This is a zero-friction distribution optimized for quick review. It renders a modern, minimalist interface complete with a real-time data table ledger and an asset image visual grid.
-* **Live Deployment URL:** *[PASTE YOUR LIVE STREAMLIT WEB LINK HERE]*
+* **Live Deployment URL:** *(https://newtotheworld849-partsrecognition-app-dkl64w.streamlit.app/)*
 * **Requirements:** None. Opens instantly in any modern web or mobile browser without downloading external interpreters.
 
 ### Option B: The Standalone Desktop Software (`desktop_app.py`)
